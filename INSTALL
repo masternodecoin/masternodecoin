@@ -1,0 +1,9 @@
+Building Masternodecoin
+
+See doc/readme-qt.rst for instructions on building Masternodecoin QT,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of Masternodecoin.
+
+See doc/build-*.txt for instructions on building Masternodecoind,
+the intended-for-services, no-graphical-interface, reference
+implementation of Masternodecoin.
