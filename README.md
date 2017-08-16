@@ -31,7 +31,7 @@ Masternodecoin is a digital currency that enables instant payments to anyone, an
 
 
 **MainNet Parameters**
-P2P Port = 10085
+P2P Port = 10086
 RPC Port = 10085
 
 
