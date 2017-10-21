@@ -27,23 +27,17 @@ namespace Checkpoints
     static MapCheckpoints mapCheckpoints =
         boost::assign::map_list_of
           (0,     Params().HashGenesisBlock())
-        (1, uint256("0x0000000008f710a0e18d0d04a4b86341346611b3e7984f5ee5b3d9010caa0d38"))
-        (1000, uint256("0x0000000095750ba4eb4f8d7ac82af03400209e111df3667e51fb6d9cda6edf4d"))
-        (2000, uint256("0x000000005fdbc5bf8389f15596a06872663e68d49dd84e87de9d2a0494041fec"))
-        (3000, uint256("0x267761f6aa6eb9b96a4c48e593cf17ed7572dc91125e0e5eeb8ba3ec2efda1d1"))
-        (5000,     uint256("0x411c6b3f7d7730d851536b7a7ce95d0ba3b4f7c8c4c24142e9b01c469d6e9439") )
-        (10000,    uint256("0xe044586abcaae3cb6e7b4756713136ca538c30d0e885edc6a3af6e681b480d05") )
-        (20000,    uint256("0x255d7cf5cbb7eece52fc6752be56c4f180b1bf71d83bbee04b84f33cf498c499") )
-        (30000,    uint256("0xe6bfd03712c8146cc558ecffad3bd529fec3f15eea08b3e8d38f5a4e7c57a2de") )
-        (40000,    uint256("0x11d58efe6ecb82d3c0d3d1dbc3b9cc51460890afe047ac2211da71cc32f8f127") )
-        (50000,    uint256("0xe482040a0ab71589b23dd2fe257d67a2f2712dafb085079d76c6c46dbef91c87") )
-        (60000,    uint256("0xd38b50003666d67bc340bb2343fdc1ebbde36ce597f7975ac3b813b1eb46d184") )
-        (70000,    uint256("0xd8cb10c2f2dd34c75d7e6ea80ae656543bf1f37ae497d4c521e55180abc51bbb") )
-    /*    (20000,    uint256("0x255d7cf5cbb7eece52fc6752be56c4f180b1bf71d83bbee04b84f33cf498c499") )
-                (30000,    uint256("0xe6bfd03712c8146cc558ecffad3bd529fec3f15eea08b3e8d38f5a4e7c57a2de") )
-                (40000,    uint256("0x11d58efe6ecb82d3c0d3d1dbc3b9cc51460890afe047ac2211da71cc32f8f127") )
-                (50000,    uint256("0xe482040a0ab71589b23dd2fe257d67a2f2712dafb085079d76c6c46dbef91c87") )
-        */
+/*		(1000, uint256("00000007075466184507ebe0eccbcfeceede1b9785c344f0ba7315d394bd6211"))
+		(2000, uint256("00000002e2095ce7e3ab1bd94218dfafb792147a9fb3e4f2136882cfe5fe0808"))
+		(5000, uint256("000000358d593954acc6a8167422d5b599e3555d400bf7f02cefb3b44f0b584b"))
+		(179600, uint256("043e02f408ee9e43e600e476ea33cc80241666e9e3811abdf261825b1d1adaa0"))
+        (1,     uint256("0x000000ed2f68cd6c7935831cc1d473da7c6decdb87e8b5dba0afff0b00002690") ) // Premine
+        (10,    uint256("0x00000032f5a96d31d74b380c0336445baccb73a01bdbedec868283019bad7016") )  // Confirmation of Premine
+        (22,    uint256("0x00000002e04f91402d78b84433ec744aacac5c40952b918fe09a7d623ac33967") )
+        (32,    uint256("0x0000001880da8fd09cc6f5e93315135fe686eb49f9054c807fa810d56ebb013b") )
+        (35,    uint256("0x0000000af6204fd43bb9cafea1dd192c245979d4dd7bde19efb92f633589ade5") )
+        (45,    uint256("0x00000006d6b9e9fba4dee10bc63ca7ea764c80c2b9c4fa6ddedb944eb288a371") )
+*/
 		;
 
     // TestNet has no checkpoints

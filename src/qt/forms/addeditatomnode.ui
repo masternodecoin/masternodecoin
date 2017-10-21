@@ -26,7 +26,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Enter an Alias (friendly name) for your Master Node and its address (either clearnet IP and port or Tor onion address and port). The address should be in the format 123.456.789.123:15200 or abc.com:15200. You must send exactly 50,000 MTNC to the collateral address.You can follow the instruction here:&lt;a href=&quot;https://docs.google.com/document/d/11WnHDlVmNCTZDnrn8yQYXE21PRBn8h6A5bQiaVpn6Ts/edit?usp=sharing&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;【HOW TO SET UP MASTERNODE】&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;https://docs.google.com/document/d/1m0YQVE-9CP_pLNKyMwQNMSj1QYOTbR0AKi_zjF7P8Hg/edit?usp=sharing&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;【HOW TO SET UP MULTIPLE MASTERNODE】&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter an Alias (friendly name) for your Master Node and its address (either clearnet IP and port or Tor onion address and port). The address should be in the format 123.456.789.123:15200 or abc.com:15200. You must send exactly 50,000 MTNC to the collateral address.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
