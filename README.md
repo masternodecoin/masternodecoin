@@ -1,5 +1,5 @@
 
-# **Masternodecoin-Core (MTNC) v1.0**
+# **Masternodecoin-Core (MTNC) v1.1.1.1
 
 [![Build Status](https://travis-ci.org/Masternodecoin/ion.svg?branch=master)](https://travis-ci.org/Masternodecoin/ion)
 
@@ -22,7 +22,7 @@ Masternodecoin Integration/Staging Tree
 * PoS Reward: Varied
 * PoS Min: 1 Day
 * PoS Max: Unlimited
-* Total Coins: 100,000,000 MTNC
+* Total Coins: 100,000,000 MTNC (under the burnning)
 * Block Size: 2 Mega-bytes (MB)
 
 
