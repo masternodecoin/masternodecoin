@@ -96,7 +96,7 @@ Copyright (c) 2011-2012 Peercoin (PPCoin) Developers
 Copyright (c) 2013-2014 The NovaCoin developers
 Copyright (c) 2014-2015 Transfer Developers
 Copyright (c) 2016-2017 The ion Core developers
-Copyright (c) 2013-2017 The Masternodecoin developers</string>
+Copyright (c) 2017-201? The Masternodecoin developers</string>
        </property>
        <property name="textInteractionFlags">
         <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -111,10 +111,8 @@ Copyright (c) 2013-2017 The Masternodecoin developers</string>
        <property name="text">
         <string>
 This is experimental software.
-
 Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php.
-
-This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.</string>
+This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.Remark :Please understand the rist of crypto currency first then dedice join in or not.MTNC has the possiblity of defeat,MTNC team's not liable for any investment losses. </string>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
