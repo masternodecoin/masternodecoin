@@ -498,10 +498,10 @@ void BitcoinGUI::createToolBars()
     HyperlinkBtn *pb3 = new HyperlinkBtn(":/mod/twitter.png","https://twitter.com/masternodecoin");
     HyperlinkBtn *pb4 = new HyperlinkBtn(":/mod/facebook.png","https://www.facebook.com/node.master.56/");
 
-    pb1->setFixedSize(40,40);
-    pb2->setFixedSize(40,40);
-    pb3->setFixedSize(40,40);
-    pb4->setFixedSize(40,40);
+    pb1->setFixedSize(38,38);
+    pb2->setFixedSize(38,38);
+    pb3->setFixedSize(38,38);
+    pb4->setFixedSize(38,38);
 
     lay->addWidget(pb1);
     lay->addWidget(pb2);
