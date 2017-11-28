@@ -28,10 +28,18 @@ USE_UPNP=1
 # workaround for boost 1.58
 #DEFINES += BOOST_VARIANT_USE_RELAXED_GET_BY_DEFAULT
 
+#adder richards
+DEFINES += MTNC_MOD
+
+
+MTNC_MOD_INCLUDE = $$PWD/src/qt/mod
+INCLUDEPATH += $$MTNC_MOD_INCLUDE
+
 
 OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
+
 
 # use: qmake "RELEASE=1"
 contains(RELEASE, 1) {
@@ -60,9 +68,9 @@ QMAKE_CXXFLAGS *= -D_FORTIFY_SOURCE=2
 # for extra security on Windows: enable ASLR and DEP via GCC linker flags
 win32:QMAKE_LFLAGS *= -Wl,--dynamicbase -Wl,--nxcompat
 # on Windows: enable GCC large address aware linker flag
- win32:QMAKE_LFLAGS *= -Wl,--large-address-aware -static
+# win32:QMAKE_LFLAGS *= -Wl,--large-address-aware -static
 # i686-w64-mingw32
- win32:QMAKE_LFLAGS *= -static-libgcc -static-libstdc++
+# win32:QMAKE_LFLAGS *= -static-libgcc -static-libstdc++
 
 # use: qmake "USE_QRCODE=1"
 # libqrencode (http://fukuchi.org/works/qrencode/index.en.html) must be installed for support
@@ -105,7 +113,9 @@ contains(BITCOIN_NEED_QT_PLUGINS, 1) {
 #Build Leveldb
 INCLUDEPATH += src/leveldb/include src/leveldb/helpers
 LIBS += $$PWD/src/leveldb/libleveldb.a $$PWD/src/leveldb/libmemenv.a
-SOURCES += src/txdb-leveldb.cpp
+SOURCES += src/txdb-leveldb.cpp \
+    src/qt/mod/HyperlinkBtn.cpp \
+    src/qt/mod/exappsform.cpp
 !win32 {
     # we use QMAKE_CXXFLAGS_RELEASE even without RELEASE=1 because we use RELEASE to indicate linking preferences not -O preferences
     genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX $(MAKE) OPT=\"$$QMAKE_CXXFLAGS $$QMAKE_CXXFLAGS_RELEASE\" libleveldb.a libmemenv.a
@@ -305,7 +315,9 @@ HEADERS += src/qt/bitcoingui.h src/proofs.h src/amount.h \
     src/qt/multisigaddressentry.h \
     src/qt/multisiginputentry.h \
     src/qt/multisigdialog.h \
-    src/limitedmap.h
+    src/limitedmap.h \
+    src/qt/mod/HyperlinkBtn.h \
+    src/qt/mod/exappsform.h
 
 SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp src/proofs.cpp src/uint256.cpp src/amount.cpp \
     src/qt/transactiontablemodel.cpp \
@@ -414,7 +426,8 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp src/proofs.cpp src/uint256.c
     src/qt/multisigdialog.cpp
 
 RESOURCES += \
-    src/qt/bitcoin.qrc
+    src/qt/bitcoin.qrc \
+    src/qt/mod/rc/MtncMod.qrc
 
 FORMS += \
     src/qt/forms/coincontroldialog.ui \
@@ -435,7 +448,8 @@ FORMS += \
     src/qt/forms/atomnodeconfigdialog.ui \
     src/qt/forms/multisigaddressentry.ui \
     src/qt/forms/multisiginputentry.ui \
-    src/qt/forms/multisigdialog.ui
+    src/qt/forms/multisigdialog.ui \
+    src/qt/mod/exappsform.ui
 
 contains(USE_QRCODE, 1) {
 HEADERS += src/qt/qrcodedialog.h
@@ -533,7 +547,6 @@ isEmpty(OPENSSL_LIB_PATH) {
     macx:OPENSSL_LIB_PATH = /usr/local/opt/openssl/lib
     windows:OPENSSL_LIB_PATH=D:/openssl-1.0.2h/lib
 }
-
 # use: qmake "USE_UPNP=1" ( enabled by default; default)
 #  or: qmake "USE_UPNP=0" (disabled by default)
 #  or: qmake "USE_UPNP=-" (not supported)

@@ -1,7 +1,7 @@
 
-# **Masternodecoin-Core (MTNC) v1.1.1.1
+# **Masternodecoin-Core (MTNC) v1.1.1.2
 
-[![Build Status](https://travis-ci.org/Masternodecoin/ion.svg?branch=master)](https://travis-ci.org/Masternodecoin/ion)
+
 
 Masternodecoin Integration/Staging Tree
 ================================

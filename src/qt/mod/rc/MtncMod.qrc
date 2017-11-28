@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/mod">
+        <file>background.png</file>
+        <file>btn_checked.png</file>
+        <file>btn_unchecked.png</file>
+        <file>btt.png</file>
+        <file>facebook.png</file>
+        <file>twitter.png</file>
+        <file>website.png</file>
+		<file>btn1_ck.png</file>
+        <file>btn1_unck.png</file>
+        <file>skin.css</file>		
+    </qresource>
+</RCC>

@@ -21,7 +21,9 @@ AddEditAtomNode::AddEditAtomNode(QWidget *parent) :
     ui(new Ui::AddEditAtomNode)
 {
     ui->setupUi(this);
-
+#if defined(MTNC_MOD)
+    ui->label_9->setOpenExternalLinks(true);
+#endif
 }
 
 AddEditAtomNode::~AddEditAtomNode()

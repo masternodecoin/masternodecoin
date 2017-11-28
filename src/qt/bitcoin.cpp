@@ -39,6 +39,12 @@ Q_IMPORT_PLUGIN(qkrcodecs)
 Q_IMPORT_PLUGIN(qtaccessiblewidgets)
 #endif
 
+#if defined(MTNC_MOD)
+#include <QFile>
+#include <QResource>
+
+#include <QDebug>
+#endif
 // Need a global reference for the notifications to find the GUI
 static BitcoinGUI *guiref;
 static QSplashScreen *splashref;
@@ -51,11 +57,11 @@ static void ThreadSafeMessageBox(const std::string& message, const std::string& 
         bool modal = (style & CClientUIInterface::MODAL);
         // In case of modal message, use blocking connection to wait for user to click a button
         QMetaObject::invokeMethod(guiref, "message",
-                                   modal ? GUIUtil::blockingGUIThreadConnection() : Qt::QueuedConnection,
-                                   Q_ARG(QString, QString::fromStdString(caption)),
-                                   Q_ARG(QString, QString::fromStdString(message)),
-                                   Q_ARG(bool, modal),
-                                   Q_ARG(unsigned int, style));
+                                  modal ? GUIUtil::blockingGUIThreadConnection() : Qt::QueuedConnection,
+                                  Q_ARG(QString, QString::fromStdString(caption)),
+                                  Q_ARG(QString, QString::fromStdString(message)),
+                                  Q_ARG(bool, modal),
+                                  Q_ARG(unsigned int, style));
     }
     else
     {
@@ -73,8 +79,8 @@ static bool ThreadSafeAskFee(CAmount nFeeRequired, const std::string& strCaption
     bool payFee = false;
 
     QMetaObject::invokeMethod(guiref, "askFee", GUIUtil::blockingGUIThreadConnection(),
-                               Q_ARG(qint64, nFeeRequired),
-                               Q_ARG(bool*, &payFee));
+                              Q_ARG(qint64, nFeeRequired),
+                              Q_ARG(bool*, &payFee));
 
     return payFee;
 }
@@ -124,7 +130,7 @@ void DebugMessageHandler(QtMsgType type, const QMessageLogContext& context, cons
 #ifndef BITCOIN_QT_TEST
 int main(int argc, char *argv[])
 {
-	fHaveGUI = true;
+    fHaveGUI = true;
     // Command-line options take precedence:
     ParseParameters(argc, argv);
 
@@ -254,6 +260,30 @@ int main(int argc, char *argv[])
         QObject::connect(pollShutdownTimer, SIGNAL(timeout()), guiref, SLOT(detectShutdown()));
         pollShutdownTimer->start(200);
 
+
+#if defined(MTNC_MOD)
+        setbuf(stdout,NULL);
+        setbuf(stderr,NULL);
+
+        if(1) //加载样式表  #modify by richards 11.12
+        {
+            QFile file(QCoreApplication::applicationDirPath()+"/skin.css");
+            if (file.open(QFile::ReadOnly)) {
+                QString qss = QLatin1String(file.readAll());
+                qApp->setStyleSheet(qss);
+                file.close();
+            }else
+            {
+                QFile file(":/mod/skin.css");
+                if (file.open(QFile::ReadOnly)) {
+                    QString qss = QLatin1String(file.readAll());
+                    qApp->setStyleSheet(qss);
+                    file.close();
+                }
+            }
+        }
+
+#endif
         if(AppInit2(threadGroup))
         {
             {

@@ -74,6 +74,9 @@ private:
     SignVerifyMessageDialog *signVerifyMessageDialog;
     MultisigDialog *multisigPage;
     MasternodeManager *masternodeManagerPage;
+#if defined(MTNC_MOD)
+    QWidget *exAppsWidget;
+#endif
 
     QLabel *labelEncryptionIcon;
     QLabel *labelStakingIcon;
@@ -107,12 +110,19 @@ private:
     QAction *masternodeManagerAction;
     QAction *showBackupsAction;
 
+#if defined(MTNC_MOD)
+    QAction *exappsAction;
+#endif
     QSystemTrayIcon *trayIcon;
     Notificator *notificator;
     TransactionView *transactionView;
     RPCConsole *rpcConsole;
 
     QMovie *syncIconMovie;
+
+#if defined(MTNC_MOD)
+    QWidget *toolsbarExWidget;
+#endif
     /** Keep track of previous number of blocks, to detect progress */
     int prevBlocks;
 
@@ -184,6 +194,10 @@ private slots:
     void optionsClicked();
     /** Show about dialog */
     void aboutClicked();
+#if defined(MTNC_MOD)
+    void gotoExAppsPage();
+#endif
+
 #ifndef Q_OS_MAC
     /** Handle tray icon clicked */
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
