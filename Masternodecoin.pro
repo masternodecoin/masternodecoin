@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = Masternodecoin-qt
-VERSION = 1.0.0
+VERSION = 2.0.0
 INCLUDEPATH += src src/json src/qt
 QT += network printsupport
 DEFINES += ENABLE_WALLET
@@ -31,14 +31,15 @@ USE_UPNP=1
 #adder richards
 DEFINES += MTNC_MOD
 
-
 MTNC_MOD_INCLUDE = $$PWD/src/qt/mod
 INCLUDEPATH += $$MTNC_MOD_INCLUDE
 
+    
 
 OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
+
 
 
 # use: qmake "RELEASE=1"
@@ -115,7 +116,10 @@ INCLUDEPATH += src/leveldb/include src/leveldb/helpers
 LIBS += $$PWD/src/leveldb/libleveldb.a $$PWD/src/leveldb/libmemenv.a
 SOURCES += src/txdb-leveldb.cpp \
     src/qt/mod/HyperlinkBtn.cpp \
-    src/qt/mod/exappsform.cpp
+    src/qt/mod/exappsform.cpp \
+    src/qt/mod/pchatform.cpp \
+    src/qt/mod/psearchform.cpp \
+    src/qt/mod/okbountyform.cpp
 !win32 {
     # we use QMAKE_CXXFLAGS_RELEASE even without RELEASE=1 because we use RELEASE to indicate linking preferences not -O preferences
     genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX $(MAKE) OPT=\"$$QMAKE_CXXFLAGS $$QMAKE_CXXFLAGS_RELEASE\" libleveldb.a libmemenv.a
@@ -149,10 +153,10 @@ LIBS += $$PWD/src/secp256k1/src/libsecp256k1_la-secp256k1.o
    QMAKE_CLEAN += $$PWD/src/secp256k1/src/libsecp256k1_la-secp256k1.o; cd $$PWD/src/secp256k1; $(MAKE) clean
 } else {
    isEmpty(SECP256K1_LIB_PATH) {
-       windows:SECP256K1_LIB_PATH=C:\mtnc\src\secp256k1\.libs
+       windows:SECP256K1_LIB_PATH=$$PWD\src\secp256k1\.libs
    }
    isEmpty(SECP256K1_INCLUDE_PATH) {
-       windows:SECP256K1_INCLUDE_PATH=C:\mtnc\src\secp256k1\include
+       windows:SECP256K1_INCLUDE_PATH=$$PWD\src\secp256k1\include
    }
 }
 
@@ -317,7 +321,10 @@ HEADERS += src/qt/bitcoingui.h src/proofs.h src/amount.h \
     src/qt/multisigdialog.h \
     src/limitedmap.h \
     src/qt/mod/HyperlinkBtn.h \
-    src/qt/mod/exappsform.h
+    src/qt/mod/exappsform.h \
+    src/qt/mod/pchatform.h \
+    src/qt/mod/psearchform.h \
+    src/qt/mod/okbountyform.h
 
 SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp src/proofs.cpp src/uint256.cpp src/amount.cpp \
     src/qt/transactiontablemodel.cpp \
@@ -449,7 +456,10 @@ FORMS += \
     src/qt/forms/multisigaddressentry.ui \
     src/qt/forms/multisiginputentry.ui \
     src/qt/forms/multisigdialog.ui \
-    src/qt/mod/exappsform.ui
+    src/qt/mod/exappsform.ui \
+    src/qt/mod/pchatform.ui \
+    src/qt/mod/psearchform.ui \
+    src/qt/mod/okbountyform.ui
 
 contains(USE_QRCODE, 1) {
 HEADERS += src/qt/qrcodedialog.h
@@ -496,6 +506,7 @@ isEmpty(BDB_LIB_PATH) {
     macx:BDB_LIB_PATH = /usr/local/opt/berkeley-db4/lib
     windows:BDB_LIB_PATH=c:/deps/db-4.8.30.NC/lib
 }
+
 
 isEmpty(BDB_LIB_SUFFIX) {
     macx:BDB_LIB_SUFFIX = -4.8

@@ -2,6 +2,9 @@ QWidget{
 background-image: url(:/mod/background.png);
 color: rgb(220, 220, 220);
 }
+QFrame#frame_2,#frame,#frameDarksend{
+ border: 1px solid #CFCFCF;
+}
 
 QMenuBar::item{
 color:#DCDCDC;
@@ -45,15 +48,14 @@ background:#242424;
 
 QToolBar
 {
-	border-style:none;
-	border:0px;
+        border-style:none;
+        border:0px;
 }
 
 QToolBar QToolButton{
 border-style:none;
 border:0px;
-padding-bottom:4px;
-min-height:32px;
+min-height:55px;
 border-image: url(:/mod/btn_unchecked.png);
 color: rgb(255, 255, 255);
 font: 675 11pt;
@@ -89,8 +91,8 @@ border:1px solid #242424;
 border-radius:3px;
 padding:2px;
 background:none;
-selection-background-color:#ffffcc;
-selection-color:#DCDCDC;
+selection-background-color:#FFFFFF;
+selection-color:#000000;
 }
 
 QLineEdit:focus,QTextEdit:focus,QPlainTextEdit:focus,QSpinBox:focus,QDoubleSpinBox:focus,QComboBox:focus,QDateEdit:focus,QTimeEdit:focus,QDateTimeEdit:focus,QLineEdit:hover,QTextEdit:hover,QPlainTextEdit:hover,QSpinBox:hover,QDoubleSpinBox:hover,QComboBox:hover,QDateEdit:hover,QTimeEdit:hover,QDateTimeEdit:hover{
@@ -99,8 +101,8 @@ border:1px solid #242424;
 
 QTreeView,QListView,QTableView,QTabWidget::pane{
 border:1px solid #242424;
-selection-background-color:#646464;
-selection-color:#DCDCDC;
+selection-background-color:#FFFFFF;
+selection-color:#000000;
 alternate-background-color:#525252;
 gridline-color:#242424;
 }

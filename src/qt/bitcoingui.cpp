@@ -72,6 +72,9 @@
 #if defined(MTNC_MOD)
 #include "HyperlinkBtn.h"
 #include "exappsform.h"
+#include "pchatform.h"
+#include "psearchform.h"
+#include "okbountyform.h"
 #endif
 
 extern bool fOnlyTor;
@@ -128,6 +131,9 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
 
 #if defined(MTNC_MOD)
     exAppsWidget = new exAppsForm();
+    pChatWidget = new pchatForm();
+    pSearchWidget = new pSearchForm();
+    okBountyWidget = new okBountyForm();
 #endif
 
     transactionsPage = new QWidget(this);
@@ -156,8 +162,11 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     centralStackedWidget->addWidget(receiveCoinsPage);
     centralStackedWidget->addWidget(sendCoinsPage);
     centralStackedWidget->addWidget(masternodeManagerPage);
-    centralStackedWidget->addWidget(exAppsWidget);
-
+#if defined(MTNC_MOD)
+    centralStackedWidget->addWidget(pChatWidget);
+    centralStackedWidget->addWidget(pSearchWidget);
+    centralStackedWidget->addWidget(okBountyWidget);
+#endif
     QWidget *centralWidget = new QWidget();
     QVBoxLayout *centralLayout = new QVBoxLayout(centralWidget);
     centralLayout->setContentsMargins(0,0,0,0);
@@ -266,52 +275,69 @@ void BitcoinGUI::createActions()
 {
     QActionGroup *tabGroup = new QActionGroup(this);
 #if defined(MTNC_MOD)
-    overviewAction = new QAction(tr("&Dashboard"), this);
+    overviewAction = new QAction(QIcon(":/mod/home.png"),tr("&Dashboard"), this);
     overviewAction->setToolTip(tr("Show general overview of wallet"));
     overviewAction->setCheckable(true);
     overviewAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_1));
 
     tabGroup->addAction(overviewAction);
 
-    receiveCoinsAction = new QAction(tr("&Receive"), this);
+    receiveCoinsAction = new QAction(QIcon(":/mod/receive.png"),tr("&Receive"), this);
     receiveCoinsAction->setToolTip(tr("Show the list of addresses for receiving payments"));
     receiveCoinsAction->setCheckable(true);
     receiveCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
     tabGroup->addAction(receiveCoinsAction);
 
-    sendCoinsAction = new QAction(tr("&Send"), this);
+    sendCoinsAction = new QAction(QIcon(":/mod/send.png"),tr("&Send"), this);
     sendCoinsAction->setToolTip(tr("Send coins to a Masternodecoin address"));
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_3));
     tabGroup->addAction(sendCoinsAction);
 
-    historyAction = new QAction(tr("&Transactions"), this);
+    historyAction = new QAction(QIcon(":/mod/history.png"),tr("&Transactions"), this);
     historyAction->setToolTip(tr("Browse transaction history"));
     historyAction->setCheckable(true);
     historyAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_4));
     tabGroup->addAction(historyAction);
 
-    addressBookAction = new QAction(tr("&Addresses"), this);
+    addressBookAction = new QAction(QIcon(":/mod/address.png"),tr("&Addresses"), this);
     addressBookAction->setToolTip(tr("Edit the list of stored addresses and labels"));
     addressBookAction->setCheckable(true);
     addressBookAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
     tabGroup->addAction(addressBookAction);
 
-    masternodeManagerAction = new QAction(tr("&Masternodes"), this);
+    masternodeManagerAction = new QAction(QIcon(":/mod/masternode.png"),tr("&Masternodes"), this);
     masternodeManagerAction->setToolTip(tr("Show Master Nodes status and configure your nodes."));
     masternodeManagerAction->setCheckable(true);
     tabGroup->addAction(masternodeManagerAction);
 
-    exappsAction = new QAction(tr("A&pplications"), this);
-    masternodeManagerAction->setToolTip(tr("Ex Apps page."));
-    masternodeManagerAction->setCheckable(true);
+    exappsAction = new QAction(QIcon(":/mod/receive.png"),tr("A&pplications"), this);
+    exappsAction->setToolTip(tr("Ex Apps page."));
+    exappsAction->setCheckable(true);
     tabGroup->addAction(exappsAction);
+
+    pChatAction = new QAction(QIcon(":/mod/p-chat.png"),tr("p-c&hat"), this);
+    pChatAction->setToolTip(tr("Privacy-Chat System"));
+    pChatAction->setCheckable(true);
+    tabGroup->addAction(pChatAction);
+
+    pSearchAction = new QAction(QIcon(":/mod/p-search.png"),tr("p-s&earch"), this);
+    pSearchAction->setToolTip(tr("Privacy-Searching Engine"));
+    pSearchAction->setCheckable(true);
+    tabGroup->addAction(pSearchAction);
+
+    okBountyAction = new QAction(QIcon(":/mod/o-k-bounty.png"),tr("ok-b&ounty"), this);
+    okBountyAction->setToolTip(tr("One-Key Bounty System"));
+    okBountyAction->setCheckable(true);
+    tabGroup->addAction(okBountyAction);
 
     multisigAction = new QAction(tr("Multisig"), this);
     tabGroup->addAction(multisigAction);
 
     showBackupsAction = new QAction(tr("Show Auto&Backups"), this);
     showBackupsAction->setStatusTip(tr("S"));
+
+
 #else
     overviewAction = new QAction(QIcon(":/icons/overview"), tr("&Dashboard"), this);
     overviewAction->setToolTip(tr("Show general overview of wallet"));
@@ -372,6 +398,9 @@ void BitcoinGUI::createActions()
 
 #if defined(MTNC_MOD)
     connect(exappsAction, SIGNAL(triggered()), this, SLOT(gotoExAppsPage()));
+    connect(pChatAction, SIGNAL(triggered()), this, SLOT(gotoPChatPage()));
+    connect(pSearchAction, SIGNAL(triggered()), this, SLOT(gotoPSearchPage()));
+    connect(okBountyAction, SIGNAL(triggered()), this, SLOT(gotoOkBountyPage()));
 #endif
 
     quitAction = new QAction(tr("E&xit"), this);
@@ -470,7 +499,12 @@ void BitcoinGUI::createToolBars()
 
     QToolBar *toolbar = addToolBar(tr("Tabs toolbar"));
     toolbar->setMovable(false);
+#if defined(MTNC_MOD)
+    toolbar->setToolButtonStyle(Qt::ToolButtonIconOnly);
+#else
     toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+#endif
+
 
     //QMenu *toolbarMenu = new QMenu();
     toolbar->addAction(overviewAction);
@@ -480,7 +514,9 @@ void BitcoinGUI::createToolBars()
     toolbar->addAction(addressBookAction);
     toolbar->addAction(masternodeManagerAction);
 #if defined(MTNC_MOD)
-    toolbar->addAction(exappsAction);
+    toolbar->addAction(pChatAction);
+    toolbar->addAction(pSearchAction);
+    toolbar->addAction(okBountyAction);
 #endif
 
     QWidget *spacer = makeToolBarSpacer();
@@ -488,14 +524,14 @@ void BitcoinGUI::createToolBars()
     toolbar->setOrientation(Qt::Vertical);
     toolbar->setMovable(false);
 
-#if defined(MTNC_MOD)
+#if 0
 
     QWidget *hyperlinks = new QWidget();
     QHBoxLayout *lay = new QHBoxLayout();
 
     HyperlinkBtn *pb1 = new HyperlinkBtn(":/mod/btt.png","https://bitcointalk.org/index.php?topic=2056867.0");
     HyperlinkBtn *pb2 = new HyperlinkBtn(":/mod/website.png","http://www.masternodecoin.org/");
-    HyperlinkBtn *pb3 = new HyperlinkBtn(":/mod/twitter.png","https://twitter.com/masternodecoin");
+    HyperlinkBtn *pb3 = new HyperlinkBtn(":/mod/twitter.png","https://twitter.com/masternodecoin/");
     HyperlinkBtn *pb4 = new HyperlinkBtn(":/mod/facebook.png","https://www.facebook.com/node.master.56/");
 
     pb1->setFixedSize(38,38);
@@ -517,17 +553,11 @@ void BitcoinGUI::createToolBars()
 
     addToolBar(Qt::TopToolBarArea, toolbar);
 
-#if defined(MTNC_MOD)
-    QToolButton tmp;
-    //tmp.setStyleSheet(":/mod/skin.css");
+#if defined(MTNC_MOD)    
     foreach(QAction *action, toolbar->actions()) {
-        if(!action->text().isEmpty())
-        {
-            int strlenpx =  tmp.fontMetrics().width(action->text());
-            toolbar->widgetForAction(action)->setFixedWidth(strlenpx + 40);
-        }
+        toolbar->widgetForAction(action)->setFixedWidth(100);
+        toolbar->setIconSize(QSize(95,42));
     }
-
 
 #else
     foreach(QAction *action, toolbar->actions()) {
@@ -938,6 +968,26 @@ void BitcoinGUI::gotoExAppsPage()
     exappsAction->setChecked(true);
     centralStackedWidget->setCurrentWidget(exAppsWidget);
 }
+
+void BitcoinGUI::gotoPChatPage()
+{
+    pChatAction->setChecked(true);
+    centralStackedWidget->setCurrentWidget(pChatWidget);
+}
+
+void BitcoinGUI::gotoPSearchPage()
+{
+    pSearchAction->setChecked(true);
+    centralStackedWidget->setCurrentWidget(pSearchWidget);
+}
+
+void BitcoinGUI::gotoOkBountyPage()
+{
+    okBountyAction->setChecked(true);
+    centralStackedWidget->setCurrentWidget(okBountyWidget);
+}
+
+
 #endif
 
 void BitcoinGUI::gotoOverviewPage()

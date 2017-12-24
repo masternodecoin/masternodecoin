@@ -20,6 +20,10 @@
 #include <QSettings>
 #include <QTimer>
 
+#if defined(MTNC_MOD)
+#include "HyperlinkBtn.h"
+#endif
+
 #define DECORATION_SIZE 64
 #define ICON_OFFSET 16
 #define NUM_ITEMS 6
@@ -165,6 +169,35 @@ OverviewPage::OverviewPage(QWidget *parent) :
 
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);
+
+#if defined(MTNC_MOD)
+    QWidget *hyperlinks = new QWidget(ui->medialinkWidget);
+    hyperlinks->setFixedSize(ui->medialinkWidget->size());
+
+    QHBoxLayout *lay = new QHBoxLayout(hyperlinks);
+
+    QLabel *ico = new QLabel(hyperlinks);
+    ico->setPixmap(QPixmap(":/mod/medialink.png"));
+
+    HyperlinkBtn *pb1 = new HyperlinkBtn(":/mod/btt.png","https://bitcointalk.org/index.php?topic=2056867.0",hyperlinks);
+    HyperlinkBtn *pb2 = new HyperlinkBtn(":/mod/website.png","http://www.masternodecoin.org/",hyperlinks);
+    HyperlinkBtn *pb3 = new HyperlinkBtn(":/mod/twitter.png","https://twitter.com/masternodecoin/",hyperlinks);
+    HyperlinkBtn *pb4 = new HyperlinkBtn(":/mod/facebook.png","https://www.facebook.com/node.master.56/",hyperlinks);
+
+    pb1->setFixedSize(38,38);
+    pb2->setFixedSize(38,38);
+    pb3->setFixedSize(38,38);
+    pb4->setFixedSize(38,38);
+
+    lay->addWidget(ico,1,Qt::AlignVCenter);
+    lay->addWidget(pb1,1,Qt::AlignVCenter);
+    lay->addWidget(pb2,1,Qt::AlignVCenter);
+    lay->addWidget(pb3,1,Qt::AlignVCenter);
+    lay->addWidget(pb4,1,Qt::AlignVCenter);
+    lay->setSpacing(5);
+    lay->setMargin(0);
+    hyperlinks->setLayout(lay);
+#endif
 }
 
 void OverviewPage::handleTransactionClicked(const QModelIndex &index)

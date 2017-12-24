@@ -76,6 +76,9 @@ private:
     MasternodeManager *masternodeManagerPage;
 #if defined(MTNC_MOD)
     QWidget *exAppsWidget;
+    QWidget *pChatWidget;
+    QWidget *pSearchWidget;
+    QWidget *okBountyWidget;
 #endif
 
     QLabel *labelEncryptionIcon;
@@ -112,6 +115,9 @@ private:
 
 #if defined(MTNC_MOD)
     QAction *exappsAction;
+    QAction *pChatAction;
+    QAction *pSearchAction;
+    QAction *okBountyAction;
 #endif
     QSystemTrayIcon *trayIcon;
     Notificator *notificator;
@@ -196,6 +202,9 @@ private slots:
     void aboutClicked();
 #if defined(MTNC_MOD)
     void gotoExAppsPage();
+    void gotoPChatPage();
+    void gotoPSearchPage();
+    void gotoOkBountyPage();
 #endif
 
 #ifndef Q_OS_MAC

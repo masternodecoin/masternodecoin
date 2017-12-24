@@ -1,5 +1,5 @@
 
-# **Masternodecoin-Core (MTNC) v1.1.1.2
+# **Masternodecoin-Core (MTNC) V2.0.0.0
 
 
 

@@ -7,8 +7,19 @@
         <file>facebook.png</file>
         <file>twitter.png</file>
         <file>website.png</file>
-		<file>btn1_ck.png</file>
+        <file>btn1_ck.png</file>
         <file>btn1_unck.png</file>
-        <file>skin.css</file>		
+        <file>skin.css</file>
+        <file>address.png</file>
+        <file>btn_unchecked - copy.png</file>
+        <file>history.png</file>
+        <file>home.png</file>
+        <file>masternode.png</file>
+        <file>medialink.png</file>
+        <file>o-k-bounty.png</file>
+        <file>p-chat.png</file>
+        <file>p-search.png</file>
+        <file>receive.png</file>
+        <file>send.png</file>
     </qresource>
 </RCC>

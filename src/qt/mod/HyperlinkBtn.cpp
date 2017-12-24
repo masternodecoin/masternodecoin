@@ -3,7 +3,8 @@
 
 HyperlinkBtn::HyperlinkBtn(QString iconurl, QString url, QWidget *parent)
     :m_websiteUrl(url),
-      m_icon(iconurl)
+      m_icon(iconurl),
+      QAbstractButton(parent)
 {
     setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
     connect(this,SIGNAL(clicked(bool)),this,SLOT(onClicked(bool)));
