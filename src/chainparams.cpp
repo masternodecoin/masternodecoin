@@ -128,7 +128,7 @@ public:
 
     vSeeds.push_back(CDNSSeedData("47.52.46.158", "47.52.46.158"));
     vSeeds.push_back(CDNSSeedData("23.247.2.51", "23.247.2.51"));
-    vSeeds.push_back(CDNSSeedData("50.117.69.172", "50.117.69.172"));
+    vSeeds.push_back(CDNSSeedData("50.117.86.76", "50.117.86.76"));
         convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
         nPoolMaxTransactions = 3;
