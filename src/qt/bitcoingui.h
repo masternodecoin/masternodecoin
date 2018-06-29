@@ -79,6 +79,7 @@ private:
     QWidget *pChatWidget;
     QWidget *pSearchWidget;
     QWidget *okBountyWidget;
+    QWidget *okbWidget; //一键支付的弹窗
 #endif
 
     QLabel *labelEncryptionIcon;

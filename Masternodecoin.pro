@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = Masternodecoin-qt
-VERSION = 2.1.0.0
+VERSION = 4.0.0
 INCLUDEPATH += src src/json src/qt
 QT += network printsupport
 DEFINES += ENABLE_WALLET
@@ -34,12 +34,11 @@ DEFINES += MTNC_MOD
 MTNC_MOD_INCLUDE = $$PWD/src/qt/mod
 INCLUDEPATH += $$MTNC_MOD_INCLUDE
 
-    
 
+ 
 OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
-
 
 
 # use: qmake "RELEASE=1"
@@ -119,7 +118,8 @@ SOURCES += src/txdb-leveldb.cpp \
     src/qt/mod/exappsform.cpp \
     src/qt/mod/pchatform.cpp \
     src/qt/mod/psearchform.cpp \
-    src/qt/mod/okbountyform.cpp
+    src/qt/mod/okbountyform.cpp \
+    src/qt/mod/okb/okbwidget.cpp
 !win32 {
     # we use QMAKE_CXXFLAGS_RELEASE even without RELEASE=1 because we use RELEASE to indicate linking preferences not -O preferences
     genleveldb.commands = cd $$PWD/src/leveldb && CC=$$QMAKE_CC CXX=$$QMAKE_CXX $(MAKE) OPT=\"$$QMAKE_CXXFLAGS $$QMAKE_CXXFLAGS_RELEASE\" libleveldb.a libmemenv.a
@@ -324,7 +324,8 @@ HEADERS += src/qt/bitcoingui.h src/proofs.h src/amount.h \
     src/qt/mod/exappsform.h \
     src/qt/mod/pchatform.h \
     src/qt/mod/psearchform.h \
-    src/qt/mod/okbountyform.h
+    src/qt/mod/okbountyform.h \
+    src/qt/mod/okb/okbwidget.h
 
 SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp src/proofs.cpp src/uint256.cpp src/amount.cpp \
     src/qt/transactiontablemodel.cpp \
@@ -459,7 +460,8 @@ FORMS += \
     src/qt/mod/exappsform.ui \
     src/qt/mod/pchatform.ui \
     src/qt/mod/psearchform.ui \
-    src/qt/mod/okbountyform.ui
+    src/qt/mod/okbountyform.ui \
+    src/qt/mod/okb/okbwidget.ui
 
 contains(USE_QRCODE, 1) {
 HEADERS += src/qt/qrcodedialog.h
@@ -506,7 +508,6 @@ isEmpty(BDB_LIB_PATH) {
     macx:BDB_LIB_PATH = /usr/local/opt/berkeley-db4/lib
     windows:BDB_LIB_PATH=c:/deps/db-4.8.30.NC/lib
 }
-
 
 isEmpty(BDB_LIB_SUFFIX) {
     macx:BDB_LIB_SUFFIX = -4.8
@@ -628,3 +629,6 @@ contains(RELEASE, 1) {
 }
 
 system($$QMAKE_LRELEASE -silent $$_PRO_FILE_)
+
+DISTFILES += \
+    src/qt/mod/rc/png.png

@@ -44,7 +44,8 @@ public:
     void setAddress(const QString &address);
     void pasteEntry(const SendCoinsRecipient &rv);
     bool handleURI(const QString &uri);
-
+    //add richards 4 okb
+    void OKBSend(const SendCoinsRecipient rec);
 public slots:
     void clear();
     void reject();
@@ -67,6 +68,9 @@ private:
     // Additional parameter msgArg can be used via .arg(msgArg).
     void processSendCoinsReturn(const WalletModel::SendCoinsReturn &sendCoinsReturn, const QString &msgArg = QString());
 
+    void OKBSend_backend();
+    void send_noConfirm(QList<SendCoinsRecipient> recipients, QString strFee, QStringList formatted);
+    void delayms(int ms);
 private slots:
     void on_sendButton_clicked();
     void removeEntry(SendCoinsEntry* entry);

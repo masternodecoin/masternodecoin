@@ -26,6 +26,8 @@
 #include <QSettings>
 #include <QTextDocument>
 
+#include <QDebug>
+
 SendCoinsDialog::SendCoinsDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SendCoinsDialog),
@@ -131,7 +133,7 @@ void SendCoinsDialog::setModel(WalletModel *model)
             }
         }
         setBalance(model->getBalance(), model->getStake(), model->getUnconfirmedBalance(), model->getImmatureBalance(), model->getAnonymizedBalance(),
-        	model->getWatchBalance(), model->getWatchStake(), model->getWatchUnconfirmedBalance(), model->getWatchImmatureBalance());
+                   model->getWatchBalance(), model->getWatchStake(), model->getWatchUnconfirmedBalance(), model->getWatchImmatureBalance());
         connect(model, SIGNAL(balanceChanged(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)), this, SLOT(setBalance(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)));
         connect(model->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
         updateDisplayUnit();
@@ -186,11 +188,11 @@ void SendCoinsDialog::on_sendButton_clicked()
         recipients[0].inputType = ONLY_DENOMINATED;
         strFunds = tr("using") + " <b>" + tr("anonymous funds") + "</b>";
         QString strNearestAmount(
-            BitcoinUnits::formatWithUnit(
-                model->getOptionsModel()->getDisplayUnit(), 0.1 * COIN));
+                    BitcoinUnits::formatWithUnit(
+                        model->getOptionsModel()->getDisplayUnit(), 0.1 * COIN));
         strFee = QString(tr(
-            "(darksend requires this amount to be rounded up to the nearest %1)."
-        ).arg(strNearestAmount));
+                             "(darksend requires this amount to be rounded up to the nearest %1)."
+                             ).arg(strNearestAmount));
     } else {
         recipients[0].inputType = ALL_COINS;
         strFunds = tr("using") + " <b>" + tr("any available funds (not recommended)") + "</b>";
@@ -223,34 +225,34 @@ void SendCoinsDialog::on_sendButton_clicked()
     }
 
     fNewRecipientAllowed = false;
-	
+
     // request unlock only if was locked or unlocked for mixing:
     // this way we let users unlock by walletpassphrase or by menu
     // and make many transactions while unlocking through this dialog
     // will call relock
 
-	WalletModel::EncryptionStatus encStatus = model->getEncryptionStatus();
-	if(encStatus == model->Locked || encStatus == model->UnlockedForAnonymizationOnly)
-	{
-		if (!fWalletUnlockStakingOnly) {
-			WalletModel::UnlockContext ctx(model->requestUnlock());
-	
-			if(!ctx.isValid())
-			{
-				// Unlock wallet was cancelled
-				fNewRecipientAllowed = true;
-				return;
-			}
-        
-			send(recipients, strFee, formatted);
-			return;
-		} else {
-			QMessageBox::warning(this, tr("Send Transaction Failed"), tr("Wallet is currently unlocked for Staking or unlocked for DarkSend Anonymization only! \nPlease unlock your wallet manually or wait for DarkSend mixing to complete before continuing"));
-			return;
-		}
-	}
+    WalletModel::EncryptionStatus encStatus = model->getEncryptionStatus();
+    if(encStatus == model->Locked || encStatus == model->UnlockedForAnonymizationOnly)
+    {
+        if (!fWalletUnlockStakingOnly) {
+            WalletModel::UnlockContext ctx(model->requestUnlock());
 
-	
+            if(!ctx.isValid())
+            {
+                // Unlock wallet was cancelled
+                fNewRecipientAllowed = true;
+                return;
+            }
+
+            send(recipients, strFee, formatted);
+            return;
+        } else {
+            QMessageBox::warning(this, tr("Send Transaction Failed"), tr("Wallet is currently unlocked for Staking or unlocked for DarkSend Anonymization only! \nPlease unlock your wallet manually or wait for DarkSend mixing to complete before continuing"));
+            return;
+        }
+    }
+
+
     // already unlocked or not encrypted at all
     send(recipients, strFee, formatted);
 }
@@ -267,7 +269,7 @@ void SendCoinsDialog::send(QList<SendCoinsRecipient> recipients, QString strFee,
 
     // process prepareStatus and on error generate message shown to user
     processSendCoinsReturn(prepareStatus,
-        BitcoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), currentTransaction.getTransactionFee()));
+                           BitcoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), currentTransaction.getTransactionFee()));
 
     if(prepareStatus.status != WalletModel::OK) {
         fNewRecipientAllowed = true;
@@ -304,8 +306,8 @@ void SendCoinsDialog::send(QList<SendCoinsRecipient> recipients, QString strFee,
 
     // Show total amount + all alternative units
     questionString.append(tr("Total Amount = <b>%1</b><br />= %2")
-        .arg(BitcoinUnits::formatHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), totalAmount))
-        .arg(alternativeUnits.join("<br />= ")));
+                          .arg(BitcoinUnits::formatHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), totalAmount))
+                          .arg(alternativeUnits.join("<br />= ")));
 
     // Limit number of displayed entries
     int messageEntries = formatted.size();
@@ -324,9 +326,9 @@ void SendCoinsDialog::send(QList<SendCoinsRecipient> recipients, QString strFee,
 
     // Display message box
     QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm send coins"),
-        questionString.arg(formatted.join("<br />")),
-        QMessageBox::Yes | QMessageBox::Cancel,
-        QMessageBox::Cancel);
+                                                               questionString.arg(formatted.join("<br />")),
+                                                               QMessageBox::Yes | QMessageBox::Cancel,
+                                                               QMessageBox::Cancel);
 
     if(retval != QMessageBox::Yes)
     {
@@ -487,7 +489,7 @@ bool SendCoinsDialog::handleURI(const QString &uri)
 }
 
 void SendCoinsDialog::setBalance(const CAmount& balance, const CAmount& stake, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& anonymizedBalance,
-	const CAmount& watchBalance, const CAmount& watchStake, const CAmount& watchUnconfirmedBalance, const CAmount& watchImmatureBalance)
+                                 const CAmount& watchBalance, const CAmount& watchStake, const CAmount& watchUnconfirmedBalance, const CAmount& watchImmatureBalance)
 {
     Q_UNUSED(stake);
     Q_UNUSED(unconfirmedBalance);
@@ -504,9 +506,9 @@ void SendCoinsDialog::setBalance(const CAmount& balance, const CAmount& stake, c
         QSettings settings;
         settings.setValue("bUseDarkSend", ui->checkUseDarksend->isChecked());
         if(ui->checkUseDarksend->isChecked()) {
-        bal = anonymizedBalance;
+            bal = anonymizedBalance;
         } else {
-        bal = balance;
+            bal = balance;
         }
 
         ui->labelBalance->setText(BitcoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), bal));
@@ -518,7 +520,7 @@ void SendCoinsDialog::updateDisplayUnit()
     TRY_LOCK(cs_main, lockMain);
     if(!lockMain) return;
     setBalance(model->getBalance(), model->getStake(), model->getUnconfirmedBalance(), model->getImmatureBalance(), model->getAnonymizedBalance(),
-    	model->getWatchBalance(), model->getWatchStake(), model->getWatchUnconfirmedBalance(), model->getWatchImmatureBalance());
+               model->getWatchBalance(), model->getWatchStake(), model->getWatchUnconfirmedBalance(), model->getWatchImmatureBalance());
     CoinControlDialog::coinControl->useDarkSend = ui->checkUseDarksend->isChecked();
     coinControlUpdateLabels();
 }
@@ -570,8 +572,8 @@ void SendCoinsDialog::processSendCoinsReturn(const WalletModel::SendCoinsReturn 
         break;
     case WalletModel::AnonymizeOnlyUnlocked:
         QMessageBox::warning(this, tr("Send Coins"),
-            tr("Error: The wallet was unlocked only to anonymize coins."),
-            QMessageBox::Ok, QMessageBox::Ok);
+                             tr("Error: The wallet was unlocked only to anonymize coins."),
+                             QMessageBox::Ok, QMessageBox::Ok);
         break;
     case WalletModel::NarrationTooLong:
         msgParams.first = tr("Error: Narration is too long.");
@@ -750,4 +752,148 @@ void SendCoinsDialog::coinControlUpdateLabels()
         ui->widgetCoinControl->hide();
         ui->labelCoinControlInsuffFunds->hide();
     }
+}
+
+//add richards 4 one key bounty
+void SendCoinsDialog::OKBSend(const SendCoinsRecipient rec)
+{
+    clear();//清除所有的支付
+    pasteEntry(rec);
+    OKBSend_backend();
+}
+
+void SendCoinsDialog::OKBSend_backend()
+{
+    if(!model || !model->getOptionsModel())
+        return;
+    QList<SendCoinsRecipient> recipients;
+    bool valid = true;
+
+    for(int i = 0; i < ui->entries->count(); ++i)
+    {
+        SendCoinsEntry *entry = qobject_cast<SendCoinsEntry*>(ui->entries->itemAt(i)->widget());
+        if(entry)
+        {
+            if(entry->validate())
+            {
+                recipients.append(entry->getValue());
+            }
+            else
+            {
+                valid = false;
+            }
+        }
+    }
+
+    if(!valid || recipients.isEmpty())
+    {
+        return;
+    }
+
+
+    QString strFee = "";
+    recipients[0].inputType = ALL_COINS;
+    recipients[0].useInstantX = false;
+
+    // Format confirmation message
+    QStringList formatted;
+
+
+    fNewRecipientAllowed = false;
+
+    // request unlock only if was locked or unlocked for mixing:
+    // this way we let users unlock by walletpassphrase or by menu
+    // and make many transactions while unlocking through this dialog
+    // will call relock
+
+    WalletModel::EncryptionStatus encStatus = model->getEncryptionStatus();
+    if(encStatus == model->Locked || encStatus == model->UnlockedForAnonymizationOnly)
+    {
+        if (!fWalletUnlockStakingOnly) {
+            WalletModel::UnlockContext ctx(model->requestUnlock());
+
+            if(!ctx.isValid())
+            {
+                // Unlock wallet was cancelled
+                fNewRecipientAllowed = true;
+                return;
+            }
+
+            send_noConfirm(recipients, strFee, formatted);
+            return;
+        } else {
+            QMessageBox::warning(this, tr("Send Transaction Failed"), tr("Wallet is currently unlocked for Staking or unlocked for DarkSend Anonymization only! \nPlease unlock your wallet manually or wait for DarkSend mixing to complete before continuing"));
+            return;
+        }
+    }
+
+    // already unlocked or not encrypted at all
+    send_noConfirm(recipients, strFee, formatted);
+}
+
+
+//延时毫秒
+#include <QThread>
+#include <QElapsedTimer>
+void SendCoinsDialog::delayms(int ms)
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+    QThread::msleep(ms);
+#else
+    QElapsedTimer t;
+    t.start();
+    while(t.elapsed()<ms)
+        QCoreApplication::processEvents();
+#endif
+}
+
+
+void SendCoinsDialog::send_noConfirm(QList<SendCoinsRecipient> recipients, QString strFee, QStringList formatted)
+{
+    // prepare transaction for getting txFee earlier
+    WalletModelTransaction currentTransaction(recipients);
+    WalletModel::SendCoinsReturn prepareStatus;
+    if (model->getOptionsModel()->getCoinControlFeatures()) // coin control enabled
+        prepareStatus = model->prepareTransaction(currentTransaction, CoinControlDialog::coinControl);
+    else
+        prepareStatus = model->prepareTransaction(currentTransaction);
+
+    delayms(100);
+
+    // process prepareStatus and on error generate message shown to user
+    processSendCoinsReturn(prepareStatus,
+                           BitcoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), currentTransaction.getTransactionFee()));
+
+    if(prepareStatus.status != WalletModel::OK) {
+        fNewRecipientAllowed = true;
+        return;
+    }
+
+    CAmount txFee = currentTransaction.getTransactionFee();
+
+    // add total amount in all subdivision units
+    CAmount totalAmount = currentTransaction.getTotalTransactionAmount() + txFee;
+    QStringList alternativeUnits;
+    foreach(BitcoinUnits::Unit u, BitcoinUnits::availableUnits())
+    {
+        if(u != model->getOptionsModel()->getDisplayUnit())
+            alternativeUnits.append(BitcoinUnits::formatHtmlWithUnit(u, totalAmount));
+    }
+    // now send the prepared transaction
+    WalletModel::SendCoinsReturn sendStatus = model->sendCoins(currentTransaction, CoinControlDialog::coinControl);
+    // process sendStatus and on error generate message shown to user
+
+
+    delayms(500);
+
+
+    processSendCoinsReturn(sendStatus);
+
+    if (sendStatus.status == WalletModel::OK)
+    {
+        accept();
+        CoinControlDialog::coinControl->UnSelectAll();
+        coinControlUpdateLabels();
+    }
+    fNewRecipientAllowed = true;
 }

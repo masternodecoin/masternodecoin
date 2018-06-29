@@ -170,7 +170,9 @@ OverviewPage::OverviewPage(QWidget *parent) :
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);
 
-#if defined(MTNC_MOD)
+//v2.0.0去掉该部分
+//#if defined(MTNC_MOD)
+#if 0
     QWidget *hyperlinks = new QWidget(ui->medialinkWidget);
     hyperlinks->setFixedSize(ui->medialinkWidget->size());
 
@@ -179,10 +181,10 @@ OverviewPage::OverviewPage(QWidget *parent) :
     QLabel *ico = new QLabel(hyperlinks);
     ico->setPixmap(QPixmap(":/mod/medialink.png"));
 
-    HyperlinkBtn *pb1 = new HyperlinkBtn(":/mod/btt.png","https://bitcointalk.org/index.php?topic=2056867.0",hyperlinks);
-    HyperlinkBtn *pb2 = new HyperlinkBtn(":/mod/website.png","http://www.masternodecoin.org/",hyperlinks);
-    HyperlinkBtn *pb3 = new HyperlinkBtn(":/mod/twitter.png","https://twitter.com/masternodecoin/",hyperlinks);
-    HyperlinkBtn *pb4 = new HyperlinkBtn(":/mod/facebook.png","https://www.facebook.com/node.master.56/",hyperlinks);
+    HyperlinkBtn *pb1 = new HyperlinkBtn(":/mod/btt.png","http://www.111111111.com/",hyperlinks);
+    HyperlinkBtn *pb2 = new HyperlinkBtn(":/mod/website.png","http://www.11111111111.com/",hyperlinks);
+    HyperlinkBtn *pb3 = new HyperlinkBtn(":/mod/twitter.png","http://www.11111111111/",hyperlinks);
+    HyperlinkBtn *pb4 = new HyperlinkBtn(":/mod/facebook.png","http://www.11111111111.com/",hyperlinks);
 
     pb1->setFixedSize(38,38);
     pb2->setFixedSize(38,38);
@@ -595,4 +597,15 @@ void OverviewPage::toggleDarksend() {
 
 
     }
+}
+
+//add richards 4 one key bounty
+QString OverviewPage::OKBGetAvailableCoins()
+{
+   return ui->labelBalance->text();
+}
+
+QString OverviewPage::OKBGetTotalCoins()
+{
+    return ui->labelTotal->text();
 }

@@ -540,10 +540,10 @@ void BitcoinGUI::createToolBars()
     QWidget *hyperlinks = new QWidget();
     QHBoxLayout *lay = new QHBoxLayout();
 
-    HyperlinkBtn *pb1 = new HyperlinkBtn(":/mod/btt.png","http://www.11111111.com/");
-    HyperlinkBtn *pb2 = new HyperlinkBtn(":/mod/website.png","http://www.1111111.com/");
-    HyperlinkBtn *pb3 = new HyperlinkBtn(":/mod/twitter.png","http://www.1111111.com/");
-    HyperlinkBtn *pb4 = new HyperlinkBtn(":/mod/facebook.png","http://www.11111111.com/");
+    HyperlinkBtn *pb1 = new HyperlinkBtn(":/mod/btt.png","http://www.baidu.com/");
+    HyperlinkBtn *pb2 = new HyperlinkBtn(":/mod/website.png","http://www.baidu.com/");
+    HyperlinkBtn *pb3 = new HyperlinkBtn(":/mod/twitter.png","http://www.baidu.com/");
+    HyperlinkBtn *pb4 = new HyperlinkBtn(":/mod/facebook.png","http://www.baidu.com/");
 
     pb1->setFixedSize(38,38);
     pb2->setFixedSize(38,38);
@@ -922,10 +922,9 @@ void BitcoinGUI::askFee(qint64 nFeeRequired, bool *payFee)
     QString strMessage = tr("This transaction is over the size limit. You can still send it for a fee of %1, "
                             "which goes to the nodes that process your transaction and helps to support the network. "
                             "Do you want to pay the fee?").arg(BitcoinUnits::formatWithUnit(clientModel->getOptionsModel()->getDisplayUnit(), nFeeRequired));
-    QMessageBox::StandardButton retval ;/*= QMessageBox::question(
+    QMessageBox::StandardButton retval = QMessageBox::question(
                 this, tr("Confirm transaction fee"), strMessage,
-                QMessageBox::Yes|QMessageBox::Cancel, QMessageBox::Yes);*/
-    retval = QMessageBox::Yes;
+                QMessageBox::Yes|QMessageBox::Cancel, QMessageBox::Yes);
     *payFee = (retval == QMessageBox::Yes);
 }
 

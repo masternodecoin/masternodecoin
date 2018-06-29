@@ -240,3 +240,7 @@ QProgressBar:chunk{
 border-radius:5px;
 background-color:#242424;
 }
+
+QLabel{
+color:#DCDCDC;
+}

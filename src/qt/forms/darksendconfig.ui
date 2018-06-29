@@ -127,7 +127,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>This option is moderately fast and will cost about 0.05 MTNC to anonymize 1000 ION</string>
+    <string>This option is moderately fast and will cost about 0.05 MTNC to anonymize 1000 MTNC</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_8">

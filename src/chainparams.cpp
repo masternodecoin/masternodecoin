@@ -126,9 +126,9 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
 
-    vSeeds.push_back(CDNSSeedData("47.52.46.158", "47.52.46.158"));
-    vSeeds.push_back(CDNSSeedData("23.247.2.51", "23.247.2.51"));
-    vSeeds.push_back(CDNSSeedData("50.117.86.76", "50.117.86.76"));
+        vSeeds.push_back(CDNSSeedData("47.52.46.158", "47.52.46.158"));
+        vSeeds.push_back(CDNSSeedData("23.247.2.51", "23.247.2.51"));
+        vSeeds.push_back(CDNSSeedData("50.117.86.76", "50.117.86.76"));
         convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
         nPoolMaxTransactions = 3;

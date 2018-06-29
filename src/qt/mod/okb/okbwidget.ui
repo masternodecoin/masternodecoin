@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OKBWidget</class>
+ <widget class="QWidget" name="OKBWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>514</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>OKBWidget</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#OKBWidget{
+border-image: url(:/mod/onekeybounty/onekeybounty.png);
+}</string>
+  </property>
+  <widget class="QFrame" name="OKBFrame">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>100</y>
+     <width>501</width>
+     <height>261</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>501</width>
+     <height>261</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>501</width>
+     <height>261</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget{
+background-color: rgba(255, 255, 255, 0);
+	background-image: url(:/mod/png.png);
+border:0px
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetMinimumSize</enum>
+    </property>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1,1,1">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMinimumSize</enum>
+      </property>
+      <item>
+       <widget class="QPushButton" name="pb20">
+        <property name="minimumSize">
+         <size>
+          <width>111</width>
+          <height>95</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/mod/onekeybounty/b20.png);
+min-height:95px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb50">
+        <property name="minimumSize">
+         <size>
+          <width>111</width>
+          <height>95</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/mod/onekeybounty/b50.png);
+min-height:95px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb100">
+        <property name="minimumSize">
+         <size>
+          <width>111</width>
+          <height>95</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/mod/onekeybounty/b100.png);
+min-height:95px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb200">
+        <property name="minimumSize">
+         <size>
+          <width>111</width>
+          <height>95</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/mod/onekeybounty/b200.png);
+min-height:95px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1,2">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMinimumSize</enum>
+      </property>
+      <item>
+       <widget class="QPushButton" name="pb500">
+        <property name="minimumSize">
+         <size>
+          <width>111</width>
+          <height>95</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/mod/onekeybounty/b500.png);
+min-height:95px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb1000">
+        <property name="minimumSize">
+         <size>
+          <width>111</width>
+          <height>95</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/mod/onekeybounty/b1000.png);
+min-height:95px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="frame_2">
+        <property name="styleSheet">
+         <string notr="true">border-with: 0px</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QLineEdit" name="lineEdit">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>70</y>
+           <width>143</width>
+           <height>25</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+           <weight>9</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(0, 0, 0, 5);
+font: 75 14pt;
+color: rgb(220, 220, 220);
+border-width: 0px</string>
+         </property>
+         <property name="text">
+          <string>666</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pbCustomizedReward">
+         <property name="geometry">
+          <rect>
+           <x>167</x>
+           <y>60</y>
+           <width>51</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(255, 255, 255, 0);
+border-image: url(:/mod/png.png);
+border-width: 0px;
+min-height:41px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>241</width>
+           <height>111</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-image: url(:/mod/onekeybounty/customized.png);
+border-width: 0px</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <zorder>label</zorder>
+        <zorder>lineEdit</zorder>
+        <zorder>pbCustomizedReward</zorder>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="okbAvailable">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>273</y>
+     <width>111</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt;
+color: rgb(255, 255, 255);
+background-image: url(:/mod/png.png);</string>
+   </property>
+   <property name="text">
+    <string>0.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="okbTotal">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>308</y>
+     <width>111</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 10pt;
+color: rgb(255, 255, 255);
+background-image: url(:/mod/png.png);</string>
+   </property>
+   <property name="text">
+    <string>0.00</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbClose">
+   <property name="geometry">
+    <rect>
+     <x>850</x>
+     <y>60</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(255, 255, 255, 0);
+border-image: url(:/mod/onekeybounty/close.png);
+border-width: 0px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>okbAvailable</zorder>
+  <zorder>okbTotal</zorder>
+  <zorder>OKBFrame</zorder>
+  <zorder>pbClose</zorder>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

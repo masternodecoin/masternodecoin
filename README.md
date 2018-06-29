@@ -1,5 +1,5 @@
 
-# **Masternodecoin-Core (MTNC) V2.1.0.0
+# **Masternodecoin-Core (MTNC) V4.0.0.0
 
 
 
@@ -22,7 +22,7 @@ Masternodecoin Integration/Staging Tree
 * PoS Reward: Varied
 * PoS Min: 1 Day
 * PoS Max: Unlimited
-* Total Coins: 100,000,000 MTNC (under the burnning)
+* Total Coins: 100,000,000 MTNC (burnned 35000000)
 * Block Size: 2 Mega-bytes (MB)
 
 

@@ -21,5 +21,20 @@
         <file>p-search.png</file>
         <file>receive.png</file>
         <file>send.png</file>
+        <file>onekeybounty/b20.png</file>
+        <file>onekeybounty/b50.png</file>
+        <file>onekeybounty/b100.png</file>
+        <file>onekeybounty/b200.png</file>
+        <file>onekeybounty/b500.png</file>
+        <file>onekeybounty/b1000.png</file>
+        <file>onekeybounty/bottomoff.png</file>
+        <file>onekeybounty/bottomon.png</file>
+        <file>onekeybounty/customized.png</file>
+        <file>onekeybounty/onekeybounty.png</file>
+        <file>onekeybounty/onekeybountypage1.png</file>
+        <file>onekeybounty/onekeybountypage2.png</file>
+        <file>onekeybounty/line.png</file>
+        <file>png.png</file>
+        <file>onekeybounty/close.png</file>
     </qresource>
 </RCC>
