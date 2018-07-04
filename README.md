@@ -22,8 +22,8 @@ Masternodecoin Integration/Staging Tree
 * PoS Reward: Varied
 * PoS Min: 1 Day
 * PoS Max: Unlimited
-* Total Coins: 100,000,000 MTNC (burnned 35000000)
-* Block Size: 2 Mega-bytes (MB)
+* Total Coins: 100,000,000 MTNC (burned 35,000,000)
+* Block Size: 2 Megabytes (MB)
 
 
 Masternodecoin is a digital currency that enables instant payments to anyone, anywhere in the world. Masternodecoin uses peer-to-peer technology over ClearNet to operate with no central authority (centralisation): managing transactions and issuing currency (ION) are carried out collectively by the Masternodecoin network. Masternodecoin is the name of open source software which enables the use of the currency Masternodecoin.
